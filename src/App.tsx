@@ -327,7 +327,7 @@ function App() {
               ✉️ Email Us
             </a>
             <a
-              href="https://github.com/PottersGame"
+              href="https://github.com/adamhrnciar"
               target="_blank"
               rel="noopener noreferrer"
               className="contact-link"
