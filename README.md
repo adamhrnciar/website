@@ -1,73 +1,26 @@
-# React + TypeScript + Vite
+# HYPERION CanSat website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Website of team HYPERION (Piaristické gymnázium Jozefa Braneckého, Trenčín), finalist of the
+Slovak [CanSat](https://www.esa.int/Education/CanSat) 2026 competition.
 
-Currently, two official plugins are available:
+Live: https://hyperion.potter.software
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## The CanSat
 
-## React Compiler
+- **Primary mission:** temperature and pressure logged at 5 Hz to SD card, with live telemetry
+  to the ground station.
+- **Secondary mission:** autonomous precision landing. Quadcopter arms deploy after release and a
+  Raspberry Pi Zero 2W runs ArUco marker detection to guide a MambaF405 MK2 flight controller
+  (ArduPilot) onto a 3×3 m target.
+- **Engineering note:** the full Critical Design Review is in
+  [`public/TN_HYPERION_CDR.pdf`](public/TN_HYPERION_CDR.pdf).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Development
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```sh
+npm install
+npm run dev      # local dev server
+npm run build    # production build into dist/
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Pushes to `main` deploy to GitHub Pages via `.github/workflows/deploy.yml`.
